@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STREAMORA | Your Mood. Your Universe.</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0b0718;
+    color: white;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 7%;
+    background: #120c26;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid #33234e;
+}
+
+.logo {
+    color: #bd83ff;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #bd83ff;
+}
+
+.hero {
+    padding: 75px 7%;
+    min-height: 430px;
+    background:
+    linear-gradient(90deg, #10091f 20%, #10091fcc 55%, #10091f55),
+    url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1600&q=80");
+    background-size: cover;
+    background-position: center;
+}
+
+.tag {
+    color: #c59aff;
+    letter-spacing: 3px;
+    font-size: 12px;
+}
+
+.hero h1 {
+    font-size: clamp(36px, 6vw, 65px);
+    margin: 20px 0;
+    max-width: 650px;
+    line-height: 1.1;
+}
+
+.hero p {
+    color: #d0c7df;
+    line-height: 1.7;
+    max-width: 500px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.primary {
+    background: #a855f7;
+    color: white;
+    margin-top: 22px;
+}
+
+.primary:hover {
+    background: #c084fc;
+    color: #180b29;
+}
+
+section {
+    padding: 35px 7%;
+}
+
+.section-title {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.moods {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.mood {
+    background: #1d1432;
+    color: white;
+    border: 1px solid #44315e;
+}
+
+.mood.active, .mood:hover {
+    background: #a855f7;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #44315e;
+    border-radius: 8px;
+    background: #171025;
+    color: white;
+    outline: none;
+}
+
+.movies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #171025;
+    border: 1px solid #302044;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #a855f7;
+}
+
+.poster {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    background: #302044;
+}
+
+.card-content {
+    padding: 13px;
+}
+
+.card h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.meta {
+    color: #c5b5d9;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.card button {
+    width: 100%;
+    margin-top: 7px;
+    padding: 9px;
+    background: #302044;
+    color: white;
+}
+
+.card button:hover {
+    background: #a855f7;
+}
+
+.plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+}
+
+.plan {
+    padding: 25px;
+    background: #171025;
+    border: 1px solid #44315e;
+    border-radius: 15px;
+}
+
+.plan.featured {
+    border: 2px solid #a855f7;
+    background: #24143d;
+}
+
+.plan h3 {
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 15px 0;
+    color: #d2a7ff;
+}
+
+.plan p {
+    color: #c5b5d9;
+    line-height: 2;
+    font-size: 13px;
+}
+
+.plan button {
+    width: 100%;
+    background: #a855f7;
+    color: white;
+    margin-top: 20px;
+}
+
+.info {
+    background: #171025;
+    border: 1px solid #44315e;
+    padding: 22px;
+    border-radius: 12px;
+    line-height: 1.8;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #a99ab9;
+    border-top: 1px solid #302044;
+    font-size: 13px;
+}
+
+#message {
+    color: #d2a7ff;
+    margin-top: 15px;
+}
+
+@media(max-width:600px) {
+    header {
+        padding: 15px 5%;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    nav {
+        width: 100%;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        margin: 0;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 55px 5%;
+    }
+
+    section {
+        padding: 30px 5%;
+    }
+
+    .poster {
+        height: 190px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">✦ STREAMORA</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#discover">Discover</a>
+        <a href="#mood">Mood Studio</a>
+        <a href="#membership">Membership</a>
+        <a href="#space">My Space</a>
+    </nav>
+</header>
+
+<div class="hero" id="home">
+    <div class="tag">YOUR MOOD. YOUR UNIVERSE.</div>
+
+    <h1>Entertainment That Understands You.</h1>
+
+    <p>
+        Discover stories, explore new worlds and challenge your mind.
+        Find your next adventure with Streamora's mood-based discovery.
+    </p>
+
+    <button class="primary" onclick="goTo('discover')">
+        Explore My Universe →
+    </button>
+</div>
+
+<section id="mood">
+    <div class="tag">PERSONALIZED FOR YOU</div>
+    <h2 class="section-title" style="margin-top:12px">
+        What is your mood today?
+    </h2>
+
+    <div class="moods">
+        <button class="mood active" onclick="selectMood('All',this)">✨ All</button>
+        <button class="mood" onclick="selectMood('Happy',this)">☀️ Happy</button>
+        <button class="mood" onclick="selectMood('Romantic',this)">❤️ Romantic</button>
+        <button class="mood" onclick="selectMood('Thriller',this)">⚡ Thriller</button>
+        <button class="mood" onclick="selectMood('Adventure',this)">🌍 Adventure</button>
+        <button class="mood" onclick="selectMood('Thoughtful',this)">🧠 Thoughtful</button>
+    </div>
+
+    <p id="message"></p>
+</section>
+
+<section id="discover">
+    <h2 class="section-title">✦ Discover Your Next Story</h2>
+
+    <div class="search-box">
+        <input id="search" type="search"
+        placeholder="Search movies, genres..."
+        oninput="renderMovies()">
+    </div>
+
+    <div class="movies" id="movieList"></div>
+</section>
+
+<section id="space">
+    <h2 class="section-title">♡ My Space — Watchlist</h2>
+
+    <p style="color:#c5b5d9;margin-bottom:20px">
+        Your personally saved entertainment collection.
+    </p>
+
+    <div class="movies" id="watchlist"></div>
+    <p id="emptyWatchlist" style="color:#a99ab9">
+        Your watchlist is empty. Save a story you love!
+    </p>
+</section>
+
+<section id="membership">
+    <div class="tag">UNLOCK YOUR UNIVERSE</div>
+    <h2 class="section-title" style="margin-top:12px">
+        Choose Your Membership
+    </h2>
+
+    <div class="plans">
+        <div class="plan">
+            <h3>Basic</h3>
+            <div class="price">₹99 <small>/month</small></div>
+            <p>✓ HD discovery catalogue</p>
+            <p>✓ 1 personal profile</p>
+            <p>✓ Personal watchlist</p>
+            <button onclick="choosePlan('Basic',99)">Choose Basic</button>
+        </div>
+
+        <div class="plan featured">
+            <h3>✦ Standard</h3>
+            <div class="price">₹199 <small>/month</small></div>
+            <p>✓ Full demo catalogue</p>
+            <p>✓ 2 personal profiles</p>
+            <p>✓ Mood-based discovery</p>
+            <button onclick="choosePlan('Standard',199)">Choose Standard</button>
+        </div>
+
+        <div class="plan">
+            <h3>Premium</h3>
+            <div class="price">₹299 <small>/month</small></div>
+            <p>✓ Premium discovery</p>
+            <p>✓ 4 personal profiles</p>
+            <p>✓ All demo features</p>
+            <button onclick="choosePlan('Premium',299)">Choose Premium</button>
+        </div>
+    </div>
+
+    <p id="planMessage" style="margin-top:20px;color:#d2a7ff"></p>
+</section>
+
+<section>
+    <div class="info">
+        <h2>About Streamora</h2>
+        <p>
+            Streamora is a subscription-based entertainment discovery
+            platform concept. Its unique feature is mood-based content
+            discovery, helping users explore stories based on how they feel.
+        </p>
+        <p style="color:#c5b5d9;margin-top:10px">
+            This is a functional frontend demo. Membership selection is
+            simulated; it does not collect payments or provide licensed
+            full-length movie streaming.
+        </p>
+    </div>
+</section>
+
+<footer>
+    ✦ STREAMORA — Your Mood. Your Universe.
+    <br><br>
+    College Project Demo | © 2026 Streamora
+</footer>
+
+<script>
+const movies = [
+    {
+        id:1,
+        title:"The Grand Adventure",
+        year:2025,
+        genre:"Adventure",
+        mood:"Adventure",
+        rating:"8.5",
+        poster:"https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=500&q=80",
+        desc:"Discover an extraordinary world full of possibilities."
+    },
+    {
+        id:2,
+        title:"Midnight Mystery",
+        year:2024,
+        genre:"Thriller",
+        mood:"Thriller",
+        rating:"8.8",
+        poster:"https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=500&q=80",
+        desc:"A mysterious journey where every clue matters."
+    },
+    {
+        id:3,
+        title:"Love in the City",
+        year:2025,
+        genre:"Romance",
+        mood:"Romantic",
+        rating:"8.1",
+        poster:"https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=500&q=80",
+        desc:"A heartwarming story about unexpected connections."
+    },
+    {
+        id:4,
+        title:"Happy Days",
+        year:2023,
+        genre:"Comedy",
+        mood:"Happy",
+        rating:"7.9",
+        poster:"https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=500&q=80",
+        desc:"A feel-good story full of laughter and friendship."
+    },
+    {
+        id:5,
+        title:"Beyond the Stars",
+        year:2025,
+        genre:"Sci-Fi",
+        mood:"Thoughtful",
+        rating:"9.0",
+        poster:"https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=500&q=80",
+        desc:"Explore big questions about life and the universe."
+    },
+    {
+        id:6,
+        title:"Wild Horizons",
+        year:2024,
+        genre:"Adventure",
+        mood:"Adventure",
+        rating:"8.4",
+        poster:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=80",
+        desc:"Journey through breathtaking landscapes."
+    },
+    {
+        id:7,
+        title:"The Last Secret",
+        year:2025,
+        genre:"Thriller",
+        mood:"Thriller",
+        rating:"8.7",
+        poster:"https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=500&q=80",
+        desc:"Nothing is what it first appears to be."
+    },
+    {
+        id:8,
+        title:"A Beautiful Beginning",
+        year:2024,
+        genre:"Romance",
+        mood:"Romantic",
+        rating:"8.2",
+        poster:"https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=500&q=80",
+        desc:"Every ending can be a beautiful new beginning."
+    }
+];
+
+let currentMood = "All";
+let watchlist = JSON.parse(localStorage.getItem("streamoraWatchlist") || "[]");
+
+function goTo(id) {
+    document.getElementById(id).scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+function selectMood(mood,button) {
+    currentMood = mood;
+
+    document.querySelectorAll(".mood").forEach(function(b) {
+        b.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    document.getElementById("message").textContent =
+        mood === "All"
+        ? "Explore every world in your universe."
+        : "Your " + mood.toLowerCase() +
+          " mood has unlocked matching stories.";
+
+    renderMovies();
+}
+
+function renderMovies() {
+    const search = document.getElementById("search").value.toLowerCase();
+
+    const filtered = movies.filter(function(movie) {
+        const matchesSearch =
+            movie.title.toLowerCase().includes(search) ||
+            movie.genre.toLowerCase().includes(search);
+
+        const matchesMood =
+            currentMood === "All" || movie.mood === currentMood;
+
+        return matchesSearch && matchesMood;
+    });
+
+    const list = document.getElementById("movieList");
+
+    if(filtered.length === 0) {
+        list.innerHTML =
+            "<p>No stories found. Try another search or mood.</p>";
+        return;
+    }
+
+    list.innerHTML = filtered.map(function(movie) {
+        const saved = watchlist.includes(movie.id);
+
+        return `
+        <div class="card">
+            <img class="poster"
+                 src="${movie.poster}"
+                 alt="${movie.title}"
+                 loading="lazy">
+
+            <div class="card-content">
+                <h3>${movie.title}</h3>
+
+                <div class="meta">
+                    ${movie.year} • ${movie.genre}
+                </div>
+
+                <div class="meta">⭐ ${movie.rating}/10</div>
+
+                <button onclick="showDetails(${movie.id})">
+                    View Story
+                </button>
+
+                <button onclick="toggleWatchlist(${movie.id})">
+                    ${saved ? "♥ Saved" : "♡ Add to My Space"}
+                </button>
+            </div>
+        </div>`;
+    }).join("");
+}
+
+function showDetails(id) {
+    const movie = movies.find(function(m) {
+        return m.id === id;
+    });
+
+    alert(
+        movie.title + "\n\n" +
+        movie.desc + "\n\n" +
+        "Genre: " + movie.genre + "\n" +
+        "Year: " + movie.year + "\n" +
+        "Rating: " + movie.rating + "/10\n\n" +
+        "Streamora discovery demo"
+    );
+}
+
+function toggleWatchlist(id) {
+    if(watchlist.includes(id)) {
+        watchlist = watchlist.filter(function(item) {
+            return item !== id;
+        });
+    } else {
+        watchlist.push(id);
+    }
+
+    localStorage.setItem(
+        "streamoraWatchlist",
+        JSON.stringify(watchlist)
+    );
+
+    renderMovies();
+    renderWatchlist();
+}
+
+function renderWatchlist() {
+    const savedMovies = movies.filter(function(movie) {
+        return watchlist.includes(movie.id);
+    });
+
+    document.getElementById("emptyWatchlist").style.display =
+        savedMovies.length ? "none" : "block";
+
+    document.getElementById("watchlist").innerHTML =
+        savedMovies.map(function(movie) {
+            return `
+            <div class="card">
+                <img class="poster" src="${movie.poster}" alt="${movie.title}">
+                <div class="card-content">
+                    <h3>${movie.title}</h3>
+                    <div class="meta">${movie.genre} • ⭐ ${movie.rating}</div>
+                    <button onclick="toggleWatchlist(${movie.id})">
+                        Remove from My Space
+                    </button>
+                </div>
+            </div>`;
+        }).join("");
+}
+
+function choosePlan(name,price) {
+    document.getElementById("planMessage").textContent =
+        name + " plan selected — ₹" + price +
+        "/month. This is a demo selection; no payment was taken.";
+}
+
+renderMovies();
+renderWatchlist();
+</script>
+
+</body>
+  </html>
